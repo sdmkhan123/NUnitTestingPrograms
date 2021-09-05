@@ -12,7 +12,6 @@ namespace NUnitTestingPrograms
             int d0 = (date + x + (31 * m0) / 12) % 7;
             return d0;
         }
-        // to check if the given year is a leap year
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to NUnit Testing Programs");
@@ -24,7 +23,6 @@ namespace NUnitTestingPrograms
             int year = Convert.ToInt32(Console.ReadLine());
             string[] daysName = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
             int day = dayOfWeek(month, date, year);
-            Console.WriteLine(day);
             Console.WriteLine(daysName[day]);
         }
     }
