@@ -4,41 +4,35 @@ namespace NUnitTestingPrograms
 {
     class Program
     {
-        static int toBinary(int decimalNnumber)
+        static int swapNibbles(int decimalNum)
         {
-            if (decimalNnumber == 0)
-            {
-                return 0;
-            }
-            else
-            {
-                return (decimalNnumber % 2 + 10 * toBinary(decimalNnumber / 2));
-            }   
+            return ((decimalNum & 0x0F) << 4 | (decimalNum & 0xF0) >> 4);
         }
 
-        /* Iterative method using array 
-     
-        static void toBinary(int decimalNnumber)
+        static bool isPowerOfTwo(int resultantNum)
         {
-            int[] binaryNum = new int[32];
-            int i = 0;
-            while (decimalNnumber > 0)
+            if (resultantNum == 0)
+                return false;
+
+            while (resultantNum != 1)
             {
-                binaryNum[i] = decimalNnumber % 2;
-                decimalNnumber = decimalNnumber / 2;
-                i++;
+                if (resultantNum % 2 != 0)
+                    return false;
+
+                resultantNum = resultantNum / 2;
             }
-            for (int j = i - 1; j >= 0; j--)
-                Console.Write(binaryNum[j]);
+            return true;
         }
-        */
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to NUnit Testing Programs");
 
             Console.WriteLine("Enter a decimal number ");
             int decimalNnumber = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(toBinary(decimalNnumber));
+            int resultantNum = swapNibbles(decimalNnumber);
+            Console.WriteLine("After swap the nibble the resultant num is " + resultantNum);
+            Console.Write("To check the resultant is the power of two or not: -> ");
+            Console.WriteLine(isPowerOfTwo(resultantNum) ? "Yes" : "No");
         }
     }
 }
