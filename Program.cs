@@ -4,36 +4,30 @@ namespace NUnitTestingPrograms
 {
     class Program
     {
-        public static void fewestCurrencyNotes(int amount)
+       public static int dayOfWeek(int date, int month, int year)
         {
-            int[] notes = new int[] { 1000, 500, 100, 50, 10, 5, 2, 1 };
-            int[] noteCounter = new int[8];
-            for (int i = 0; i < 8; i++)
-            {
-                if (amount >= notes[i])
-                {
-                    noteCounter[i] = amount / notes[i];
-                    amount = amount % notes[i];
-                }
-            }
-            Console.WriteLine("Minimum Notes to be returned by the Vending Machine as a Change->");
-            int totalCurrencyCount = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                if (noteCounter[i] != 0)
-                {
-                    Console.WriteLine(notes[i] + " : " + noteCounter[i]);
-                    totalCurrencyCount += noteCounter[i];
-                }
-            }
-            Console.WriteLine("Minimum Num of Currency Notes returned by Vending Machine -> " + totalCurrencyCount);
+            int y0 = year - (14 - month) / 12;
+            int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
+            int m0 = month + 12 * ((14 - month) / 12) - 2;
+            int d0 = (date + x + (31 * m0) / 12) % 7;
+            return d0;
+      
         }
+        // to check if the given year is a leap year
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to NUnit Testing Programs");
-            Console.WriteLine("Enter total amount ");
-            int amount = Convert.ToInt32(Console.ReadLine());
-            fewestCurrencyNotes(amount);
+            Console.WriteLine("Enter Date ");
+            int date = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Month ");
+            int month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Year ");
+            int year = Convert.ToInt32(Console.ReadLine());
+
+            string[] daysName = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            int[] daysInOnth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int day = dayOfWeek(month, date, year);
+            Console.WriteLine(daysName[day]);
         }
     }
 }
